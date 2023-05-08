@@ -15,11 +15,11 @@
   need to write the full "apply-templates" text yourself.
   -->
 <xsl:template match="/pokedex">
-    <xsl:apply-templates select="/pokemon[@generation = '1']" />
+    <xsl:apply-templates select='/pokemon[@generation = "1"]' />
 </xsl:template>
 
 <xsl:template match="pokemon">
-    <xsl:value-of select="@name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:value-of select="@classification" /> | 
+    <xsl:value-of select='@name' /> (<xsl:value-of select='@pokedexNumber' />): <xsl:value-of select='@classification' /> | 
 </xsl:template>
 
 <!--
