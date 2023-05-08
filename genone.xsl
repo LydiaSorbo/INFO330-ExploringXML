@@ -14,6 +14,7 @@
   in order to pull back the correct XML nodes. In some of the other stylesheets, you will
   need to write the full "apply-templates" text yourself.
   -->
+<!--
 <xsl:template match="/pokedex">
     <xsl:apply-templates select="pokemon[@generation = '1']" />
 </xsl:template>
@@ -21,7 +22,7 @@
 <xsl:template match="pokemon">
     <xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:value-of select="@classification" /> | 
 </xsl:template>
-
+-->
 <!--
   These rules will generate HTML output rather than text. This is to demonstrate
   the power of using XSLT to create pretty output from XML sources.
@@ -31,7 +32,7 @@
 
   ... where the name and the parenthesized Pokedex number are in the first column.
   -->
-<!--
+
 <xsl:template match="/pokedex">
   <html>
   <body>
@@ -41,7 +42,7 @@
       <th>Name (Pokedex Number)</th>
       <th>Classification</th>
     </tr>
-    <xsl:apply-templates select="" />
+    <xsl:apply-templates select="pokemon[@generation = '1']" />
   </table>
   </body>
   </html>
@@ -49,10 +50,10 @@
 
 <xsl:template match="pokemon">
     <tr>
-      <td><xsl:value-of select="" />(<xsl:value-of select="" />)</td>
-      <td><xsl:value-of select="" /></td>
+      <td><xsl:value-of select="name" />(<xsl:value-of select="@pokedexNumber" />)</td>
+      <td><xsl:value-of select="@classification" /></td>
     </tr>
 </xsl:template>
--->
+
 
 </xsl:stylesheet>
