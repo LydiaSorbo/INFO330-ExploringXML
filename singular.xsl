@@ -15,7 +15,7 @@
   formatted HTML file.
   -->
 <xsl:template match="/pokedex">
-Single type pokemon: <xsl:value-of select="count(pokemon)" />:
+Single type pokemon: <xsl:value-of select="count(pokemon[count(type) = 1])" />:
 
 <xsl:apply-templates select="pokemon[count(type) = 1]" />
 </xsl:template>
