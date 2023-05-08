@@ -17,6 +17,7 @@
   formatted HTML file.
   -->
 <!-- -->
+<!--
 <xsl:template match="/pokedex">
     <xsl:apply-templates select="pokemon[type = 'fire']" />
 </xsl:template>
@@ -25,12 +26,13 @@
     <xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:apply-templates select="type" /><xsl:text>
 </xsl:text>
 </xsl:template>
+-->
 
 <!--
   These rules will generate HTML output rather than text. This is to demonstrate
   the power of using XSLT to create pretty output from XML sources.
   -->
-<!--
+
 <xsl:template match="/pokedex">
   <html>
   <body>
@@ -40,7 +42,7 @@
       <th>Name</th>
       <th>Types</th>
     </tr>
-    <xsl:apply-templates select="" />
+    <xsl:apply-templates select="pokemon[type = 'fire']" />
   </table>
   </body>
   </html>
@@ -48,10 +50,10 @@
 
 <xsl:template match="pokemon">
     <tr>
-      <td><xsl:value-of select="" />(<xsl:value-of select="" />)</td>
+      <td><xsl:value-of select="name" />(<xsl:value-of select="@pokedexNumber" />)</td>
       <td><xsl:apply-templates select="type" /></td>
     </tr>
 </xsl:template>
--->
+
 
 </xsl:stylesheet>
