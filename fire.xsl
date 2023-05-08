@@ -18,7 +18,7 @@
   -->
 <!-- -->
 <xsl:template match="/pokedex">
-    <xsl:apply-templates select="pokemon[@type = 'fire']" />
+    <xsl:apply-templates select="pokemon[type = 'fire']" />
 </xsl:template>
 
 <xsl:template match="pokemon">
