@@ -18,11 +18,11 @@
   -->
 <!-- -->
 <xsl:template match="/pokedex">
-    <xsl:apply-templates select="" />
+    <xsl:apply-templates select="pokemon[@type = 'fire']" />
 </xsl:template>
 
 <xsl:template match="pokemon">
-    <xsl:value-of select="" /> (<xsl:value-of select="" />): <xsl:apply-templates select="type" /><xsl:text>
+    <xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:apply-templates select="type" /><xsl:text>
 </xsl:text>
 </xsl:template>
 
