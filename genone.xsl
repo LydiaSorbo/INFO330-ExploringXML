@@ -14,12 +14,12 @@
   in order to pull back the correct XML nodes. In some of the other stylesheets, you will
   need to write the full "apply-templates" text yourself.
   -->
-<xsl:template match="/pokedex">
-    <xsl:apply-templates select='/pokemon[@generation = "1"]' />
+<xsl:template match="/">
+    <xsl:apply-templates select="/pokedex/pokemon[@generation = '1']" />
 </xsl:template>
 
 <xsl:template match="pokemon">
-    <xsl:value-of select='@name' /> (<xsl:value-of select='@pokedexNumber' />): <xsl:value-of select='@classification' /> | 
+    <xsl:value-of select="name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:value-of select="@classification" /> | 
 </xsl:template>
 
 <!--
