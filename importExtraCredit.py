@@ -31,11 +31,28 @@ for pokemon in root.findall('pokemon'):
 
     pokemon_id = curr.lastrowid
 
-    for t in types:
-        curr.execute("INSERT INTO pokemon_types (pokemon_id, type) VALUES (?, ?)", (pokemon_id, t))
+    for type_elem in pokemon.findall('type'):
+        type_name = type_elem.text
+        curr.execute('SELECT id FROM type WHERE name = ?', (type_name,))
+        type_id = curr.fetchone()
+        if type_id is None:
+            curr.execute('INSERT INTO type (name) VALUES (?)', (type_name,))
+            type_id = curr.lastrowid
+        else:
+            type_id = type_id[0]
+        curr.execute('INSERT INTO pokemon_type (pokemon_id, type_id) VALUES (?, ?)', (pokemon_id, type_id))
 
-    for a in abilities:
-        curr.execute("INSERT INTO pokemon_abilities (pokemon_id, ability) VALUES (?, ?)", (pokemon_id, a))
+    for ability_elem in pokemon.findall('abilities/ability'):
+        ability_name = ability_elem.text
+        curr.execute('SELECT id FROM ability WHERE name = ?', (ability_name,))
+        ability_id = curr.fetchone()
+        if ability_id is None:
+            curr.execute('INSERT INTO ability (name) VALUES (?)', (ability_name,))
+            ability_id = curr.lastrowid
+        else:
+            ability_id = ability_id[0]
+        curr.execute('INSERT INTO pokemon_abilities (pokemon_id, ability_id) VALUES (?, ?)',
+                    (pokemon_id, ability_id))
 
 conn.commit()
 conn.close()
