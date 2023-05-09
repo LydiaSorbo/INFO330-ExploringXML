@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<pokemon generation="7" pokedexNumber="802" classification="Mascot Pokémon">
+	<name>Huskichu</name>
+	<type>normal</type>
+	<type>fighting</type>
+	<hp>45</hp>
+	<attack>49</attack>
+	<defense>49</defense>
+	<speed>45</speed>
+	<sp_attack>65</sp_attack>
+	<sp_defense>65</sp_defense>
+	<height>
+		<m>0.7</m>
+	</height>
+	<weight>
+		<kg>6.9</kg>
+	</weight>
+	<abilities>
+		<ability>Fluffy</ability>
+		<ability>Strong Jaw</ability>
+	</abilities>
+</pokemon>
