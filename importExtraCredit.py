@@ -34,9 +34,7 @@ for pokemon in root.findall('pokemon'):
 
     curr.execute(
         "INSERT INTO pokemon (pokedex_number, name, classification_id, generation, hp, attack, defense, speed, "
-        "sp_attack, sp_defense, height_m, weight_kg, percentage_male, base_egg_steps, base_happiness, base_total, "
-        "capture_rate, experience_growth) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, NULL, "
-        "NULL, NULL)",
+        "sp_attack, sp_defense, height_m, weight_kg) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (pokedex_number, name, classification_id, generation, hp, attack, defense, speed, sp_attack,
          sp_defense, height_m, weight_kg))
 
