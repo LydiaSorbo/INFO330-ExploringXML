@@ -20,14 +20,17 @@ for pokemon in root.findall('pokemon'):
     speed = int(pokemon.find('speed').text)
     sp_attack = int(pokemon.find('sp_attack').text)
     sp_defense = int(pokemon.find('sp_defense').text)
-    height = float(pokemon.find('height/m').text)
-    weight = float(pokemon.find('weight/kg').text)
+    height_m = float(pokemon.find('height/m').text)
+    weight_kg = float(pokemon.find('weight/kg').text)
     abilities = [a.text for a in pokemon.findall('abilities/ability')]
 
-    curr.execute("INSERT INTO pokemon (pokedex_number, name, classification, generation, hp, attack, defense, speed, "
-                 "sp_attack, sp_defense, height, weight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                 (pokedex_number, name, classification, generation, hp, attack, defense, speed, sp_attack,
-                  sp_defense, height, weight))
+    curr.execute(
+        "INSERT INTO pokemon (pokedex_number, name, classification_id, generation, hp, attack, defense, speed, "
+        "sp_attack, sp_defense, height_m, weight_kg, percentage_male, base_egg_steps, base_happiness, base_total, "
+        "capture_rate, experience_growth) VALUES (?, ?, NULL, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, NULL, "
+        "NULL, NULL)",
+        (pokedex_number, name, generation, hp, attack, defense, speed, sp_attack,
+         sp_defense, height_m, weight_kg))
 
     pokemon_id = curr.lastrowid
 
