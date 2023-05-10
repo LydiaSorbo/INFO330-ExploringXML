@@ -24,12 +24,20 @@ for pokemon in root.findall('pokemon'):
     weight_kg = float(pokemon.find('weight/kg').text)
     abilities = [a.text for a in pokemon.findall('abilities/ability')]
 
+    curr.execute('SELECT id FROM classification WHERE text = ?', (classification,))
+    classification_id = curr.fetchone()
+    if classification_id is None:
+        curr.execute('INSERT INTO classification (text) VALUES (?)', (classification,))
+        classification_id = curr.lastrowid
+    else:
+        classification_id = classification_id[0]
+
     curr.execute(
         "INSERT INTO pokemon (pokedex_number, name, classification_id, generation, hp, attack, defense, speed, "
         "sp_attack, sp_defense, height_m, weight_kg, percentage_male, base_egg_steps, base_happiness, base_total, "
-        "capture_rate, experience_growth) VALUES (?, ?, NULL, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, NULL, "
+        "capture_rate, experience_growth) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, NULL, NULL, NULL, "
         "NULL, NULL)",
-        (pokedex_number, name, generation, hp, attack, defense, speed, sp_attack,
+        (pokedex_number, name, classification_id, generation, hp, attack, defense, speed, sp_attack,
          sp_defense, height_m, weight_kg))
 
     pokemon_id = curr.lastrowid
